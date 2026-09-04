@@ -190,25 +190,38 @@ export function Field({
 export function CheckboxRow({
   children,
   defaultChecked = false,
+  checked,
+  onChange,
 }: {
   children: ReactNode;
   defaultChecked?: boolean;
+  checked?: boolean;
+  onChange?: (value: boolean) => void;
 }) {
-  const [checked, setChecked] = useState(defaultChecked);
+  const [internal, setInternal] = useState(defaultChecked);
+  const isControlled = checked !== undefined;
+  const value = isControlled ? checked : internal;
+  const toggle = () => {
+    if (isControlled) {
+      onChange?.(!value);
+    } else {
+      setInternal((v) => !v);
+    }
+  };
   return (
     <button
       type="button"
-      onClick={() => setChecked((v) => !v)}
+      onClick={toggle}
       className="flex items-start gap-3 text-left"
-      aria-pressed={checked}
+      aria-pressed={value}
     >
       <span
         className={cn(
           "mt-0.5 grid h-[18px] w-[18px] shrink-0 place-items-center rounded-[5px] border transition-colors duration-200",
-          checked ? "border-gold bg-gold" : "border-input bg-surface",
+          value ? "border-gold bg-gold" : "border-input bg-surface",
         )}
       >
-        {checked ? (
+        {value ? (
           <Check
             className="h-3 w-3 text-primary-foreground"
             strokeWidth={3}
