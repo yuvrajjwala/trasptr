@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
 import {
   ArrowUpDown,
   Bell,
@@ -17,8 +18,10 @@ import {
 } from "lucide-react";
 
 import heroSuv from "@/assets/hero-suv.jpg";
+import { supabase } from "@/integrations/supabase/client";
 import { AppScreen, SectionHeading } from "@/components/eb/app-shell";
 import { GoldButton } from "@/components/eb/ui";
+import { formatPickupDate, formatPickupTime, type BookingRow } from "@/lib/bookings";
 
 export const Route = createFileRoute("/_authenticated/home")({
   head: () => ({
