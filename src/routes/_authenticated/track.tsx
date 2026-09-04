@@ -38,7 +38,7 @@ function MapCanvas() {
       <svg
         aria-hidden="true"
         className="absolute inset-0 h-full w-full"
-        preserveAspectRatio="xMidYMid slice"
+        preserveAspectRatio="none"
         viewBox="0 0 430 720"
       >
         <defs>
