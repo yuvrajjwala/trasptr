@@ -128,12 +128,16 @@ export function Field({
   placeholder,
   autoComplete,
   inputMode,
+  value,
+  onChange,
 }: {
   label: string;
   type?: string;
   placeholder?: string;
   autoComplete?: string;
   inputMode?: ComponentProps<"input">["inputMode"];
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   const id = useId();
   const [show, setShow] = useState(false);
@@ -155,6 +159,8 @@ export function Field({
           placeholder={placeholder}
           autoComplete={autoComplete}
           inputMode={inputMode}
+          value={value}
+          onChange={onChange}
           className={cn(
             "h-13 w-full rounded-xl border border-input bg-surface px-4 py-4 text-[0.9375rem] text-foreground",
             "placeholder:text-muted-foreground/60 outline-none transition-colors duration-300",
