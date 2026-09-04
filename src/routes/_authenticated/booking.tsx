@@ -190,7 +190,7 @@ function Booking() {
       setError(insertError.message);
       return;
     }
-    navigate({ to: "/rides" });
+    navigate({ to: "/payment" });
   };
 
 

@@ -16,9 +16,13 @@ import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as AuthenticatedBookingRouteImport } from './routes/_authenticated/booking'
+import { Route as AuthenticatedBookingConfirmedRouteImport } from './routes/_authenticated/booking-confirmed'
+import { Route as AuthenticatedDriverAssignedRouteImport } from './routes/_authenticated/driver-assigned'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
 import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated/notifications'
+import { Route as AuthenticatedPaymentRouteImport } from './routes/_authenticated/payment'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedRideDetailsRouteImport } from './routes/_authenticated/ride-details'
 import { Route as AuthenticatedRidesRouteImport } from './routes/_authenticated/rides'
 import { Route as AuthenticatedTrackRouteImport } from './routes/_authenticated/track'
 import { Route as OnboardingStepRouteImport } from './routes/onboarding.$step'
@@ -57,6 +61,18 @@ const AuthenticatedBookingRoute = AuthenticatedBookingRouteImport.update({
   path: '/booking',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedBookingConfirmedRoute =
+  AuthenticatedBookingConfirmedRouteImport.update({
+    id: '/booking-confirmed',
+    path: '/booking-confirmed',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDriverAssignedRoute =
+  AuthenticatedDriverAssignedRouteImport.update({
+    id: '/driver-assigned',
+    path: '/driver-assigned',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
   id: '/home',
   path: '/home',
@@ -68,11 +84,22 @@ const AuthenticatedNotificationsRoute =
     path: '/notifications',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedPaymentRoute = AuthenticatedPaymentRouteImport.update({
+  id: '/payment',
+  path: '/payment',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedRideDetailsRoute =
+  AuthenticatedRideDetailsRouteImport.update({
+    id: '/ride-details',
+    path: '/ride-details',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedRidesRoute = AuthenticatedRidesRouteImport.update({
   id: '/rides',
   path: '/rides',
@@ -96,9 +123,13 @@ export interface FileRoutesByFullPath {
   '/sign-in': typeof SignInRoute
   '/welcome': typeof WelcomeRoute
   '/booking': typeof AuthenticatedBookingRoute
+  '/booking-confirmed': typeof AuthenticatedBookingConfirmedRoute
+  '/driver-assigned': typeof AuthenticatedDriverAssignedRoute
   '/home': typeof AuthenticatedHomeRoute
   '/notifications': typeof AuthenticatedNotificationsRoute
+  '/payment': typeof AuthenticatedPaymentRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/ride-details': typeof AuthenticatedRideDetailsRoute
   '/rides': typeof AuthenticatedRidesRoute
   '/track': typeof AuthenticatedTrackRoute
   '/onboarding/$step': typeof OnboardingStepRoute
@@ -110,9 +141,13 @@ export interface FileRoutesByTo {
   '/sign-in': typeof SignInRoute
   '/welcome': typeof WelcomeRoute
   '/booking': typeof AuthenticatedBookingRoute
+  '/booking-confirmed': typeof AuthenticatedBookingConfirmedRoute
+  '/driver-assigned': typeof AuthenticatedDriverAssignedRoute
   '/home': typeof AuthenticatedHomeRoute
   '/notifications': typeof AuthenticatedNotificationsRoute
+  '/payment': typeof AuthenticatedPaymentRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/ride-details': typeof AuthenticatedRideDetailsRoute
   '/rides': typeof AuthenticatedRidesRoute
   '/track': typeof AuthenticatedTrackRoute
   '/onboarding/$step': typeof OnboardingStepRoute
@@ -126,9 +161,13 @@ export interface FileRoutesById {
   '/sign-in': typeof SignInRoute
   '/welcome': typeof WelcomeRoute
   '/_authenticated/booking': typeof AuthenticatedBookingRoute
+  '/_authenticated/booking-confirmed': typeof AuthenticatedBookingConfirmedRoute
+  '/_authenticated/driver-assigned': typeof AuthenticatedDriverAssignedRoute
   '/_authenticated/home': typeof AuthenticatedHomeRoute
   '/_authenticated/notifications': typeof AuthenticatedNotificationsRoute
+  '/_authenticated/payment': typeof AuthenticatedPaymentRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/ride-details': typeof AuthenticatedRideDetailsRoute
   '/_authenticated/rides': typeof AuthenticatedRidesRoute
   '/_authenticated/track': typeof AuthenticatedTrackRoute
   '/onboarding/$step': typeof OnboardingStepRoute
@@ -142,9 +181,13 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/welcome'
     | '/booking'
+    | '/booking-confirmed'
+    | '/driver-assigned'
     | '/home'
     | '/notifications'
+    | '/payment'
     | '/profile'
+    | '/ride-details'
     | '/rides'
     | '/track'
     | '/onboarding/$step'
@@ -156,9 +199,13 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/welcome'
     | '/booking'
+    | '/booking-confirmed'
+    | '/driver-assigned'
     | '/home'
     | '/notifications'
+    | '/payment'
     | '/profile'
+    | '/ride-details'
     | '/rides'
     | '/track'
     | '/onboarding/$step'
@@ -171,9 +218,13 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/welcome'
     | '/_authenticated/booking'
+    | '/_authenticated/booking-confirmed'
+    | '/_authenticated/driver-assigned'
     | '/_authenticated/home'
     | '/_authenticated/notifications'
+    | '/_authenticated/payment'
     | '/_authenticated/profile'
+    | '/_authenticated/ride-details'
     | '/_authenticated/rides'
     | '/_authenticated/track'
     | '/onboarding/$step'
@@ -240,6 +291,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedBookingRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/booking-confirmed': {
+      id: '/_authenticated/booking-confirmed'
+      path: '/booking-confirmed'
+      fullPath: '/booking-confirmed'
+      preLoaderRoute: typeof AuthenticatedBookingConfirmedRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/driver-assigned': {
+      id: '/_authenticated/driver-assigned'
+      path: '/driver-assigned'
+      fullPath: '/driver-assigned'
+      preLoaderRoute: typeof AuthenticatedDriverAssignedRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/home': {
       id: '/_authenticated/home'
       path: '/home'
@@ -254,11 +319,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedNotificationsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/payment': {
+      id: '/_authenticated/payment'
+      path: '/payment'
+      fullPath: '/payment'
+      preLoaderRoute: typeof AuthenticatedPaymentRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/profile': {
       id: '/_authenticated/profile'
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/ride-details': {
+      id: '/_authenticated/ride-details'
+      path: '/ride-details'
+      fullPath: '/ride-details'
+      preLoaderRoute: typeof AuthenticatedRideDetailsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/rides': {
@@ -287,18 +366,26 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedBookingRoute: typeof AuthenticatedBookingRoute
+  AuthenticatedBookingConfirmedRoute: typeof AuthenticatedBookingConfirmedRoute
+  AuthenticatedDriverAssignedRoute: typeof AuthenticatedDriverAssignedRoute
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
   AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
+  AuthenticatedPaymentRoute: typeof AuthenticatedPaymentRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedRideDetailsRoute: typeof AuthenticatedRideDetailsRoute
   AuthenticatedRidesRoute: typeof AuthenticatedRidesRoute
   AuthenticatedTrackRoute: typeof AuthenticatedTrackRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedBookingRoute: AuthenticatedBookingRoute,
+  AuthenticatedBookingConfirmedRoute: AuthenticatedBookingConfirmedRoute,
+  AuthenticatedDriverAssignedRoute: AuthenticatedDriverAssignedRoute,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
   AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
+  AuthenticatedPaymentRoute: AuthenticatedPaymentRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedRideDetailsRoute: AuthenticatedRideDetailsRoute,
   AuthenticatedRidesRoute: AuthenticatedRidesRoute,
   AuthenticatedTrackRoute: AuthenticatedTrackRoute,
 }
