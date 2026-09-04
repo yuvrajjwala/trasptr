@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Headphones, PencilLine, Plane, XCircle } from "lucide-react";
+import { Headphones, PencilLine, Plane, UserRound, XCircle } from "lucide-react";
 
 import { AppScreen } from "@/components/eb/app-shell";
 import { GoldButton } from "@/components/eb/ui";
