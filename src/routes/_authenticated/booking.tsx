@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
+  AlertCircle,
   Baby,
   Building2,
   Check,
@@ -19,6 +20,7 @@ import {
 } from "lucide-react";
 
 import vehicleSuv from "@/assets/vehicle-suv.jpg";
+import { supabase } from "@/integrations/supabase/client";
 import {
   BookingProgress,
   InputField,
@@ -30,9 +32,8 @@ import {
   SummaryRow,
 } from "@/components/eb/booking-ui";
 import { GoldButton, Screen } from "@/components/eb/ui";
-import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/booking")({
+export const Route = createFileRoute("/_authenticated/booking")({
   head: () => ({
     meta: [
       { title: "Arrange a Chauffeur — Eagle Black Limo" },
@@ -141,6 +142,57 @@ function Booking() {
     );
 
   const back = () => (step === 0 ? navigate({ to: "/home" }) : setStep(step - 1));
+
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const confirmBooking = async () => {
+    setError(null);
+    setBusy(true);
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) {
+      setError("Your session has expired. Please sign in again.");
+      setBusy(false);
+      return;
+    }
+
+    const pickupAt = `${date}T${time}:00`;
+    const addonRows = ADDONS.filter((a) => addons.includes(a.id)).map((a) => ({
+      id: a.id,
+      title: a.title,
+    }));
+
+    const { error: insertError } = await supabase.from("bookings").insert({
+      user_id: user.id,
+      service,
+      service_title: serviceMeta.title,
+      pickup,
+      destination: destination || null,
+      pickup_at: pickupAt,
+      passengers,
+      luggage,
+      airport: isAirport ? airport : null,
+      direction: isAirport ? direction : null,
+      airline: isAirport ? airline : null,
+      flight: isAirport ? flight : null,
+      hours: isHourly ? hours : null,
+      stops: isHourly ? stops : null,
+      addons: addonRows,
+      instructions: instructions || null,
+      estimate_total: total,
+      status: "confirmed",
+    });
+
+    setBusy(false);
+    if (insertError) {
+      setError(insertError.message);
+      return;
+    }
+    navigate({ to: "/rides" });
+  };
+
 
   return (
     <Screen>
@@ -612,11 +664,23 @@ function Booking() {
         </main>
 
         <footer className="sticky bottom-0 mt-10 border-t border-border bg-background/95 px-7 pb-8 pt-5 backdrop-blur-sm">
+          {step === 4 && error ? (
+            <div className="mb-4 flex items-center gap-3 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3">
+              <AlertCircle className="h-4 w-4 shrink-0 text-destructive" strokeWidth={1.5} />
+              <span className="min-w-0 text-[0.8125rem] leading-relaxed text-foreground/90">
+                {error}
+              </span>
+            </div>
+          ) : null}
           <GoldButton
-            onClick={() => (step === 4 ? undefined : setStep(step + 1))}
-            className={cn(step === 4 && "cursor-default")}
+            onClick={() => (step === 4 ? confirmBooking() : setStep(step + 1))}
+            disabled={busy}
           >
-            {step === 4 ? "Continue to Payment" : "Continue"}
+            {step === 4
+              ? busy
+                ? "Confirming…"
+                : "Confirm Booking"
+              : "Continue"}
           </GoldButton>
         </footer>
       </div>

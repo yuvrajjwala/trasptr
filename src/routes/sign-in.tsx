@@ -1,6 +1,9 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { Apple, ChevronLeft } from "lucide-react";
+import { useState } from "react";
+import { Apple, ChevronLeft, AlertCircle } from "lucide-react";
 
+import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable";
 import {
   CheckboxRow,
   Divider,
@@ -44,6 +47,40 @@ function GoogleGlyph() {
 
 function SignIn() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setBusy(true);
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    setBusy(false);
+    if (signInError) {
+      setError(signInError.message);
+      return;
+    }
+    navigate({ to: "/home" });
+  };
+
+  const signInWithGoogle = async () => {
+    setError(null);
+    const result = await lovable.auth.signInWithOAuth("google", {
+      redirect_uri: window.location.origin,
+    });
+    if (result.error) {
+      setError(result.error.message);
+      return;
+    }
+    if (result.redirected) return;
+    navigate({ to: "/home" });
+  };
 
   return (
     <Screen>
@@ -67,35 +104,44 @@ function SignIn() {
           Sign in to arrange your next chauffeured journey.
         </p>
 
-        <form
-          className="mt-10 flex flex-col gap-6"
-          onSubmit={(e) => {
-            e.preventDefault();
-            navigate({ to: "/home" });
-          }}
-        >
+        <form className="mt-10 flex flex-col gap-6" onSubmit={submit}>
           <Field
             label="Email Address"
             type="email"
             placeholder="you@company.com"
             autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Field
             label="Password"
             type="password"
             placeholder="••••••••"
             autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           <div className="flex items-center justify-between gap-4">
-            <CheckboxRow defaultChecked>Remember me</CheckboxRow>
+            <CheckboxRow checked={remember} onChange={setRemember}>
+              Remember me
+            </CheckboxRow>
             <TextLink to="/forgot-password" className="shrink-0 text-[0.8125rem]">
               Forgot Password
             </TextLink>
           </div>
 
-          <GoldButton type="submit" className="mt-2">
-            Sign In
+          {error ? (
+            <div className="flex items-center gap-3 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3">
+              <AlertCircle className="h-4 w-4 shrink-0 text-destructive" strokeWidth={1.5} />
+              <span className="min-w-0 text-[0.8125rem] leading-relaxed text-foreground/90">
+                {error}
+              </span>
+            </div>
+          ) : null}
+
+          <GoldButton type="submit" className="mt-2" disabled={busy}>
+            {busy ? "Signing In…" : "Sign In"}
           </GoldButton>
         </form>
 
@@ -106,7 +152,7 @@ function SignIn() {
               <Apple className="h-[18px] w-[18px]" strokeWidth={1.5} />
               Apple
             </OutlineButton>
-            <OutlineButton type="button">
+            <OutlineButton type="button" onClick={signInWithGoogle}>
               <GoogleGlyph />
               Google
             </OutlineButton>

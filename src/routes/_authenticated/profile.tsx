@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   Bell,
   ChevronRight,
@@ -9,9 +10,10 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+import { supabase } from "@/integrations/supabase/client";
 import { AppScreen } from "@/components/eb/app-shell";
 
-export const Route = createFileRoute("/profile")({
+export const Route = createFileRoute("/_authenticated/profile")({
   head: () => ({
     meta: [
       { title: "Your Profile — Eagle Black Limo" },
@@ -39,22 +41,34 @@ const ROWS = [
 ] as const;
 
 function Profile() {
+  const navigate = useNavigate();
+  const { user } = Route.useRouteContext();
+  const [signingOut, setSigningOut] = useState(false);
+
+  const email = user.email ?? "Member";
+  const initials = email.slice(0, 2).toUpperCase();
+
+  const signOut = async () => {
+    setSigningOut(true);
+    await supabase.auth.signOut();
+    setSigningOut(false);
+    navigate({ to: "/welcome" });
+  };
+
   return (
     <AppScreen>
       <div className="px-7 pt-14">
         <span className="eb-eyebrow text-[0.625rem] text-gold/85">Account</span>
         <h1 className="mt-2.5 font-display text-[2rem] font-light leading-none tracking-tight text-foreground">
-          Alex Rowan
+          {email.split("@")[0]}
         </h1>
-        <p className="mt-3 text-[0.875rem] text-muted-foreground">
-          alex.rowan@company.com
-        </p>
+        <p className="mt-3 text-[0.875rem] text-muted-foreground">{email}</p>
       </div>
 
       <div className="mt-9 px-7">
         <div className="flex items-center gap-5 rounded-2xl border border-gold/25 bg-surface-raised p-5">
           <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-gold/40 bg-background font-display text-[1.125rem] tracking-widest text-gold">
-            AR
+            {initials}
           </span>
           <div className="min-w-0">
             <span className="eb-eyebrow text-[0.5625rem] text-muted-foreground">
@@ -84,13 +98,15 @@ function Profile() {
       </div>
 
       <div className="mt-8 px-7">
-        <Link
-          to="/welcome"
+        <button
+          type="button"
+          onClick={signOut}
+          disabled={signingOut}
           className="inline-flex h-12 w-full items-center justify-center gap-3 rounded-xl border border-border text-[0.8125rem] text-muted-foreground transition-colors hover:text-gold"
         >
           <LogOut className="h-4 w-4" strokeWidth={1.5} />
-          Sign Out
-        </Link>
+          {signingOut ? "Signing Out…" : "Sign Out"}
+        </button>
       </div>
     </AppScreen>
   );

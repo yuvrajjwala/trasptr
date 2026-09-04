@@ -128,12 +128,16 @@ export function Field({
   placeholder,
   autoComplete,
   inputMode,
+  value,
+  onChange,
 }: {
   label: string;
   type?: string;
   placeholder?: string;
   autoComplete?: string;
   inputMode?: ComponentProps<"input">["inputMode"];
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   const id = useId();
   const [show, setShow] = useState(false);
@@ -155,6 +159,8 @@ export function Field({
           placeholder={placeholder}
           autoComplete={autoComplete}
           inputMode={inputMode}
+          value={value}
+          onChange={onChange}
           className={cn(
             "h-13 w-full rounded-xl border border-input bg-surface px-4 py-4 text-[0.9375rem] text-foreground",
             "placeholder:text-muted-foreground/60 outline-none transition-colors duration-300",
@@ -184,25 +190,38 @@ export function Field({
 export function CheckboxRow({
   children,
   defaultChecked = false,
+  checked,
+  onChange,
 }: {
   children: ReactNode;
   defaultChecked?: boolean;
+  checked?: boolean;
+  onChange?: (value: boolean) => void;
 }) {
-  const [checked, setChecked] = useState(defaultChecked);
+  const [internal, setInternal] = useState(defaultChecked);
+  const isControlled = checked !== undefined;
+  const value = isControlled ? checked : internal;
+  const toggle = () => {
+    if (isControlled) {
+      onChange?.(!value);
+    } else {
+      setInternal((v) => !v);
+    }
+  };
   return (
     <button
       type="button"
-      onClick={() => setChecked((v) => !v)}
+      onClick={toggle}
       className="flex items-start gap-3 text-left"
-      aria-pressed={checked}
+      aria-pressed={value}
     >
       <span
         className={cn(
           "mt-0.5 grid h-[18px] w-[18px] shrink-0 place-items-center rounded-[5px] border transition-colors duration-200",
-          checked ? "border-gold bg-gold" : "border-input bg-surface",
+          value ? "border-gold bg-gold" : "border-input bg-surface",
         )}
       >
-        {checked ? (
+        {value ? (
           <Check
             className="h-3 w-3 text-primary-foreground"
             strokeWidth={3}

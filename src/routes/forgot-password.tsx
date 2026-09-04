@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ChevronLeft, MailCheck } from "lucide-react";
+import { ChevronLeft, MailCheck, AlertCircle } from "lucide-react";
 import { useState } from "react";
 
+import { supabase } from "@/integrations/supabase/client";
 import { Field, GoldButton, Screen, TextLink, Wordmark } from "@/components/eb/ui";
 
 export const Route = createFileRoute("/forgot-password")({
@@ -24,7 +25,26 @@ export const Route = createFileRoute("/forgot-password")({
 });
 
 function ForgotPassword() {
+  const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setBusy(true);
+    const { error: resetError } = await supabase.auth.resetPasswordForEmail(
+      email,
+      { redirectTo: `${window.location.origin}/sign-in` },
+    );
+    setBusy(false);
+    if (resetError) {
+      setError(resetError.message);
+      return;
+    }
+    setSent(true);
+  };
 
   return (
     <Screen>
@@ -52,20 +72,26 @@ function ForgotPassword() {
           </p>
         </div>
 
-        <form
-          className="mt-10 flex flex-col gap-6"
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSent(true);
-          }}
-        >
+        <form className="mt-10 flex flex-col gap-6" onSubmit={submit}>
           <Field
             label="Email Address"
             type="email"
             placeholder="you@company.com"
             autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <GoldButton type="submit">Send Reset Link</GoldButton>
+          {error ? (
+            <div className="flex items-center gap-3 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3">
+              <AlertCircle className="h-4 w-4 shrink-0 text-destructive" strokeWidth={1.5} />
+              <span className="min-w-0 text-[0.8125rem] leading-relaxed text-foreground/90">
+                {error}
+              </span>
+            </div>
+          ) : null}
+          <GoldButton type="submit" disabled={busy}>
+            {busy ? "Sending…" : "Send Reset Link"}
+          </GoldButton>
         </form>
 
         {sent ? (
