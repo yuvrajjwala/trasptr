@@ -21,6 +21,7 @@ import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/h
 import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated/notifications'
 import { Route as AuthenticatedPaymentRouteImport } from './routes/_authenticated/payment'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedRideDetailsRouteImport } from './routes/_authenticated/ride-details'
 import { Route as AuthenticatedRidesRouteImport } from './routes/_authenticated/rides'
 import { Route as AuthenticatedTrackRouteImport } from './routes/_authenticated/track'
 import { Route as OnboardingStepRouteImport } from './routes/onboarding.$step'
@@ -86,6 +87,12 @@ const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedRideDetailsRoute =
+  AuthenticatedRideDetailsRouteImport.update({
+    id: '/ride-details',
+    path: '/ride-details',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedRidesRoute = AuthenticatedRidesRouteImport.update({
   id: '/rides',
   path: '/rides',
@@ -114,6 +121,7 @@ export interface FileRoutesByFullPath {
   '/notifications': typeof AuthenticatedNotificationsRoute
   '/payment': typeof AuthenticatedPaymentRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/ride-details': typeof AuthenticatedRideDetailsRoute
   '/rides': typeof AuthenticatedRidesRoute
   '/track': typeof AuthenticatedTrackRoute
   '/onboarding/$step': typeof OnboardingStepRoute
@@ -130,6 +138,7 @@ export interface FileRoutesByTo {
   '/notifications': typeof AuthenticatedNotificationsRoute
   '/payment': typeof AuthenticatedPaymentRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/ride-details': typeof AuthenticatedRideDetailsRoute
   '/rides': typeof AuthenticatedRidesRoute
   '/track': typeof AuthenticatedTrackRoute
   '/onboarding/$step': typeof OnboardingStepRoute
@@ -148,6 +157,7 @@ export interface FileRoutesById {
   '/_authenticated/notifications': typeof AuthenticatedNotificationsRoute
   '/_authenticated/payment': typeof AuthenticatedPaymentRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/ride-details': typeof AuthenticatedRideDetailsRoute
   '/_authenticated/rides': typeof AuthenticatedRidesRoute
   '/_authenticated/track': typeof AuthenticatedTrackRoute
   '/onboarding/$step': typeof OnboardingStepRoute
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/notifications'
     | '/payment'
     | '/profile'
+    | '/ride-details'
     | '/rides'
     | '/track'
     | '/onboarding/$step'
@@ -182,6 +193,7 @@ export interface FileRouteTypes {
     | '/notifications'
     | '/payment'
     | '/profile'
+    | '/ride-details'
     | '/rides'
     | '/track'
     | '/onboarding/$step'
@@ -199,6 +211,7 @@ export interface FileRouteTypes {
     | '/_authenticated/notifications'
     | '/_authenticated/payment'
     | '/_authenticated/profile'
+    | '/_authenticated/ride-details'
     | '/_authenticated/rides'
     | '/_authenticated/track'
     | '/onboarding/$step'
@@ -300,6 +313,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/ride-details': {
+      id: '/_authenticated/ride-details'
+      path: '/ride-details'
+      fullPath: '/ride-details'
+      preLoaderRoute: typeof AuthenticatedRideDetailsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/rides': {
       id: '/_authenticated/rides'
       path: '/rides'
@@ -331,6 +351,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
   AuthenticatedPaymentRoute: typeof AuthenticatedPaymentRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedRideDetailsRoute: typeof AuthenticatedRideDetailsRoute
   AuthenticatedRidesRoute: typeof AuthenticatedRidesRoute
   AuthenticatedTrackRoute: typeof AuthenticatedTrackRoute
 }
@@ -342,6 +363,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
   AuthenticatedPaymentRoute: AuthenticatedPaymentRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedRideDetailsRoute: AuthenticatedRideDetailsRoute,
   AuthenticatedRidesRoute: AuthenticatedRidesRoute,
   AuthenticatedTrackRoute: AuthenticatedTrackRoute,
 }
