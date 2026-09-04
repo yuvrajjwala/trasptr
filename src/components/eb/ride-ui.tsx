@@ -23,13 +23,13 @@ export function ScreenHeader({
         <Link
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           to={backTo as any}
-          className="mb-6 inline-flex items-center gap-2 text-[0.75rem] text-muted-foreground transition-colors hover:text-gold"
+          className="mb-6 flex w-fit items-center gap-2 text-[0.75rem] text-muted-foreground transition-colors hover:text-gold"
         >
           <ChevronLeft className="h-4 w-4" strokeWidth={1.5} />
           Back
         </Link>
       ) : null}
-      <span className="eb-eyebrow text-[0.625rem] text-gold/85">{eyebrow}</span>
+      <span className="block eb-eyebrow text-[0.625rem] text-gold/85">{eyebrow}</span>
       <h1 className="mt-2.5 font-display text-[2rem] font-light leading-none tracking-tight text-foreground">
         {title}
       </h1>
