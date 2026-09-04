@@ -16,3 +16,11 @@
 ### Later
 - [ ] Payment/checkout step (Stripe)
 - [ ] Live chauffeur tracking data
+
+### Done — demo showcase screens (frontend only)
+- [x] Payment method screen + add-card form + processing state
+- [x] Booking confirmed screen with reference, timeline, flight-monitoring card
+- [x] My Rides segmented tabs (Upcoming / Completed / Cancelled)
+- [x] Ride details screen with full sections + controlled destructive actions
+- [x] Driver assigned screen (chauffeur profile card)
+- [x] Live tracking screen with simulated premium map
