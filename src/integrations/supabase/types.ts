@@ -14,7 +14,96 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          addons: Json
+          airline: string | null
+          airport: string | null
+          created_at: string
+          destination: string | null
+          direction: string | null
+          estimate_total: number
+          flight: string | null
+          hours: number | null
+          id: string
+          instructions: string | null
+          luggage: number
+          passengers: number
+          pickup: string
+          pickup_at: string
+          service: string
+          service_title: string
+          status: string
+          stops: number | null
+          user_id: string
+        }
+        Insert: {
+          addons?: Json
+          airline?: string | null
+          airport?: string | null
+          created_at?: string
+          destination?: string | null
+          direction?: string | null
+          estimate_total?: number
+          flight?: string | null
+          hours?: number | null
+          id?: string
+          instructions?: string | null
+          luggage?: number
+          passengers?: number
+          pickup: string
+          pickup_at: string
+          service: string
+          service_title: string
+          status?: string
+          stops?: number | null
+          user_id: string
+        }
+        Update: {
+          addons?: Json
+          airline?: string | null
+          airport?: string | null
+          created_at?: string
+          destination?: string | null
+          direction?: string | null
+          estimate_total?: number
+          flight?: string | null
+          hours?: number | null
+          id?: string
+          instructions?: string | null
+          luggage?: number
+          passengers?: number
+          pickup?: string
+          pickup_at?: string
+          service?: string
+          service_title?: string
+          status?: string
+          stops?: number | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          full_name: string | null
+          id: string
+          phone: string | null
+        }
+        Insert: {
+          created_at?: string
+          full_name?: string | null
+          id: string
+          phone?: string | null
+        }
+        Update: {
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
