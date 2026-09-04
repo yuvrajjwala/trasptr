@@ -20,7 +20,7 @@ import heroSuv from "@/assets/hero-suv.jpg";
 import { AppScreen, SectionHeading } from "@/components/eb/app-shell";
 import { GoldButton } from "@/components/eb/ui";
 
-export const Route = createFileRoute("/home")({
+export const Route = createFileRoute("/_authenticated/home")({
   head: () => ({
     meta: [
       { title: "Your Chauffeur Dashboard — Eagle Black Limo" },

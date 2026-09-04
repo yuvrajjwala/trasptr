@@ -4,7 +4,7 @@ import { CalendarClock, CheckCircle2, ChevronLeft, Plane, UserRound } from "luci
 import { AppScreen } from "@/components/eb/app-shell";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/notifications")({
+export const Route = createFileRoute("/_authenticated/notifications")({
   head: () => ({
     meta: [
       { title: "Notifications — Eagle Black Limo" },

@@ -32,7 +32,7 @@ import {
 import { GoldButton, Screen } from "@/components/eb/ui";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/booking")({
+export const Route = createFileRoute("/_authenticated/booking")({
   head: () => ({
     meta: [
       { title: "Arrange a Chauffeur — Eagle Black Limo" },

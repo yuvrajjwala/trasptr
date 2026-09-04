@@ -11,7 +11,7 @@ import {
 
 import { AppScreen } from "@/components/eb/app-shell";
 
-export const Route = createFileRoute("/profile")({
+export const Route = createFileRoute("/_authenticated/profile")({
   head: () => ({
     meta: [
       { title: "Your Profile — Eagle Black Limo" },

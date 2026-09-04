@@ -3,7 +3,7 @@ import { Plane, Building2, Clock } from "lucide-react";
 
 import { AppScreen } from "@/components/eb/app-shell";
 
-export const Route = createFileRoute("/rides")({
+export const Route = createFileRoute("/_authenticated/rides")({
   head: () => ({
     meta: [
       { title: "My Rides — Eagle Black Limo" },

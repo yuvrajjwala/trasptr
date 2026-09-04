@@ -4,7 +4,7 @@ import { Phone, MessageSquare, Plane } from "lucide-react";
 import heroSuv from "@/assets/hero-suv.jpg";
 import { AppScreen } from "@/components/eb/app-shell";
 
-export const Route = createFileRoute("/track")({
+export const Route = createFileRoute("/_authenticated/track")({
   head: () => ({
     meta: [
       { title: "Track Your Chauffeur — Eagle Black Limo" },
