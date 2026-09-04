@@ -259,73 +259,86 @@ function HomeScreen() {
       {/* Next ride */}
       <section className="mt-12 px-7">
         <SectionHeading eyebrow="Upcoming" title="Your Next Ride" />
-        <article className="eb-elevated mt-6 overflow-hidden rounded-2xl border border-border bg-surface">
-          <div className="flex items-start gap-4 p-5">
-            <img
-              src={heroSuv}
-              alt="Luxury black SUV"
-              width={1024}
-              height={1536}
-              className="h-16 w-16 shrink-0 rounded-xl object-cover"
-            />
-            <div className="min-w-0 flex-1">
-              <div className="flex items-start justify-between gap-3">
-                <h3 className="min-w-0 text-[0.9375rem] font-medium leading-snug text-foreground">
-                  Chicago O&rsquo;Hare Int&rsquo;l Airport
-                </h3>
-                <span className="shrink-0 rounded-full border border-gold/40 px-3 py-1 text-[0.5625rem] font-semibold uppercase tracking-[0.16em] text-gold">
-                  Confirmed
+        {nextRide ? (
+          <article className="eb-elevated mt-6 overflow-hidden rounded-2xl border border-border bg-surface">
+            <div className="flex items-start gap-4 p-5">
+              <img
+                src={heroSuv}
+                alt="Luxury black SUV"
+                width={1024}
+                height={1536}
+                className="h-16 w-16 shrink-0 rounded-xl object-cover"
+              />
+              <div className="min-w-0 flex-1">
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="min-w-0 text-[0.9375rem] font-medium leading-snug text-foreground">
+                    {nextRide.service_title}
+                  </h3>
+                  <span className="shrink-0 rounded-full border border-gold/40 px-3 py-1 text-[0.5625rem] font-semibold uppercase tracking-[0.16em] text-gold">
+                    {nextRide.status}
+                  </span>
+                </div>
+                <p className="mt-3 text-[0.8125rem] text-muted-foreground">
+                  {formatPickupDate(nextRide.pickup_at)} &nbsp;·&nbsp; Pickup{" "}
+                  {formatPickupTime(nextRide.pickup_at)}
+                </p>
+              </div>
+            </div>
+
+            <div className="mx-5 h-px eb-hairline" />
+
+            <div className="px-5 py-5">
+              <div className="flex gap-4">
+                <div className="flex flex-col items-center pt-1.5">
+                  <span className="h-2 w-2 rounded-full bg-gold" />
+                  <span className="my-1 w-px flex-1 bg-border" />
+                  <span className="h-2 w-2 rounded-[2px] border border-ivory/70" />
+                </div>
+                <div className="flex-1 space-y-5">
+                  <div>
+                    <span className="eb-eyebrow block text-[0.5625rem] text-muted-foreground">
+                      Pickup
+                    </span>
+                    <span className="mt-1 block text-[0.875rem] text-foreground">
+                      {nextRide.pickup}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="eb-eyebrow block text-[0.5625rem] text-muted-foreground">
+                      Destination
+                    </span>
+                    <span className="mt-1 block text-[0.875rem] text-foreground">
+                      {nextRide.destination ?? "On your schedule"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 flex items-center justify-between gap-4">
+                <span className="inline-flex items-center gap-2 text-[0.75rem] text-muted-foreground">
+                  <Plane className="h-3.5 w-3.5 text-gold" strokeWidth={1.5} />
+                  Flight monitored
                 </span>
-              </div>
-              <p className="mt-3 text-[0.8125rem] text-muted-foreground">
-                Friday, Sep 18 &nbsp;·&nbsp; Pickup 08:30 AM
-              </p>
-            </div>
-          </div>
-
-          <div className="mx-5 h-px eb-hairline" />
-
-          <div className="px-5 py-5">
-            <div className="flex gap-4">
-              <div className="flex flex-col items-center pt-1.5">
-                <span className="h-2 w-2 rounded-full bg-gold" />
-                <span className="my-1 w-px flex-1 bg-border" />
-                <span className="h-2 w-2 rounded-[2px] border border-ivory/70" />
-              </div>
-              <div className="flex-1 space-y-5">
-                <div>
-                  <span className="eb-eyebrow block text-[0.5625rem] text-muted-foreground">
-                    Pickup
-                  </span>
-                  <span className="mt-1 block text-[0.875rem] text-foreground">
-                    Oak Brook, IL
-                  </span>
-                </div>
-                <div>
-                  <span className="eb-eyebrow block text-[0.5625rem] text-muted-foreground">
-                    Destination
-                  </span>
-                  <span className="mt-1 block text-[0.875rem] text-foreground">
-                    O&rsquo;Hare International Airport
-                  </span>
-                </div>
+                <Link
+                  to="/rides"
+                  className="inline-flex h-10 items-center rounded-xl border border-gold/40 px-5 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-gold transition-colors hover:bg-gold/10"
+                >
+                  View Ride
+                </Link>
               </div>
             </div>
-
-            <div className="mt-6 flex items-center justify-between gap-4">
-              <span className="inline-flex items-center gap-2 text-[0.75rem] text-muted-foreground">
-                <Plane className="h-3.5 w-3.5 text-gold" strokeWidth={1.5} />
-                Flight monitored
-              </span>
-              <Link
-                to="/rides"
-                className="inline-flex h-10 items-center rounded-xl border border-gold/40 px-5 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-gold transition-colors hover:bg-gold/10"
-              >
-                View Ride
-              </Link>
-            </div>
-          </div>
-        </article>
+          </article>
+        ) : (
+          <article className="mt-6 overflow-hidden rounded-2xl border border-border bg-surface p-6 text-center">
+            <p className="text-[0.9375rem] text-foreground">No upcoming rides.</p>
+            <p className="mt-2 text-[0.8125rem] text-muted-foreground">
+              Arrange a chauffeured journey and it will appear here.
+            </p>
+            <Link to="/booking" className="mt-6 block">
+              <GoldButton>Plan a Ride</GoldButton>
+            </Link>
+          </article>
+        )}
       </section>
 
       {/* Quick actions */}
