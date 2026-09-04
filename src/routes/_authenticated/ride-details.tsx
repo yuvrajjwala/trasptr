@@ -154,6 +154,16 @@ function RideDetails() {
             </span>
           </button>
           <div className="mx-5 h-px eb-hairline" />
+          <Link
+            to="/driver-assigned"
+            className="flex w-full items-center gap-4 px-5 py-4 text-left transition-colors hover:bg-surface-raised"
+          >
+            <UserRound className="h-[17px] w-[17px] text-gold" strokeWidth={1.25} />
+            <span className="flex-1 text-[0.875rem] text-foreground">
+              Your Chauffeur
+            </span>
+          </Link>
+          <div className="mx-5 h-px eb-hairline" />
           <button
             type="button"
             className="flex w-full items-center gap-4 px-5 py-4 text-left transition-colors hover:bg-surface-raised"
