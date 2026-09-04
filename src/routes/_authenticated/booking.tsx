@@ -32,7 +32,6 @@ import {
   SummaryRow,
 } from "@/components/eb/booking-ui";
 import { GoldButton, Screen } from "@/components/eb/ui";
-import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/booking")({
   head: () => ({
