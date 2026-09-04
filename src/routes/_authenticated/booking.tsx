@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
+  AlertCircle,
   Baby,
   Building2,
   Check,
@@ -19,6 +20,7 @@ import {
 } from "lucide-react";
 
 import vehicleSuv from "@/assets/vehicle-suv.jpg";
+import { supabase } from "@/integrations/supabase/client";
 import {
   BookingProgress,
   InputField,
