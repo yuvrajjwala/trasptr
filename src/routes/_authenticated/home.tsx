@@ -132,7 +132,7 @@ function AddressRow({
 function HomeScreen() {
   const { user } = Route.useRouteContext();
   const email = user.email ?? "Member";
-  const name = email.split("@")[0];
+  const name = email.split("@")[0] ?? email;
   const initials = name.slice(0, 2).toUpperCase();
   const greetingHour = new Date().getHours();
   const greeting =
