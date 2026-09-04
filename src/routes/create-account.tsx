@@ -1,6 +1,8 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { ChevronLeft } from "lucide-react";
+import { useState } from "react";
+import { ChevronLeft, AlertCircle } from "lucide-react";
 
+import { supabase } from "@/integrations/supabase/client";
 import {
   CheckboxRow,
   Field,
@@ -32,6 +34,53 @@ export const Route = createFileRoute("/create-account")({
 
 function CreateAccount() {
   const navigate = useNavigate();
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [agreed, setAgreed] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+
+    if (password !== confirm) {
+      setError("Passwords do not match.");
+      return;
+    }
+    if (!agreed) {
+      setError("Please accept the Terms of Service to continue.");
+      return;
+    }
+
+    setBusy(true);
+    const { data, error: signUpError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { full_name: fullName, phone } },
+    });
+
+    if (signUpError) {
+      setError(signUpError.message);
+      setBusy(false);
+      return;
+    }
+
+    const userId = data.user?.id;
+    if (userId) {
+      await supabase.from("profiles").upsert({
+        id: userId,
+        full_name: fullName,
+        phone,
+      });
+    }
+
+    setBusy(false);
+    navigate({ to: "/home" });
+  };
 
   return (
     <Screen>
@@ -55,19 +104,21 @@ function CreateAccount() {
           A few details and your chauffeur is a tap away.
         </p>
 
-        <form
-          className="mt-9 flex flex-col gap-5"
-          onSubmit={(e) => {
-            e.preventDefault();
-            navigate({ to: "/home" });
-          }}
-        >
-          <Field label="Full Name" placeholder="Jonathan Reed" autoComplete="name" />
+        <form className="mt-9 flex flex-col gap-5" onSubmit={submit}>
+          <Field
+            label="Full Name"
+            placeholder="Jonathan Reed"
+            autoComplete="name"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+          />
           <Field
             label="Email Address"
             type="email"
             placeholder="you@company.com"
             autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Field
             label="Phone Number"
@@ -75,29 +126,44 @@ function CreateAccount() {
             inputMode="tel"
             placeholder="(312) 555-0148"
             autoComplete="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
           />
           <Field
             label="Password"
             type="password"
             placeholder="••••••••"
             autoComplete="new-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <Field
             label="Confirm Password"
             type="password"
             placeholder="••••••••"
             autoComplete="new-password"
+            value={confirm}
+            onChange={(e) => setConfirm(e.target.value)}
           />
 
           <div className="mt-2">
-            <CheckboxRow>
+            <CheckboxRow checked={agreed} onChange={setAgreed}>
               I agree to the Terms of Service and Privacy Policy of Eagle Black
               Limo.
             </CheckboxRow>
           </div>
 
-          <GoldButton type="submit" className="mt-4">
-            Create Account
+          {error ? (
+            <div className="flex items-center gap-3 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3">
+              <AlertCircle className="h-4 w-4 shrink-0 text-destructive" strokeWidth={1.5} />
+              <span className="min-w-0 text-[0.8125rem] leading-relaxed text-foreground/90">
+                {error}
+              </span>
+            </div>
+          ) : null}
+
+          <GoldButton type="submit" className="mt-4" disabled={busy}>
+            {busy ? "Creating…" : "Create Account"}
           </GoldButton>
         </form>
 

@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as CreateAccountRouteImport } from './routes/create-account'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as SignInRouteImport } from './routes/sign-in'
@@ -25,6 +26,10 @@ import { Route as OnboardingStepRouteImport } from './routes/onboarding.$step'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreateAccountRoute = CreateAccountRouteImport.update({
@@ -48,35 +53,35 @@ const WelcomeRoute = WelcomeRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedBookingRoute = AuthenticatedBookingRouteImport.update({
-  id: '/_authenticated/booking',
+  id: '/booking',
   path: '/booking',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
-  id: '/_authenticated/home',
+  id: '/home',
   path: '/home',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedNotificationsRoute =
   AuthenticatedNotificationsRouteImport.update({
-    id: '/_authenticated/notifications',
+    id: '/notifications',
     path: '/notifications',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
-  id: '/_authenticated/profile',
+  id: '/profile',
   path: '/profile',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedRidesRoute = AuthenticatedRidesRouteImport.update({
-  id: '/_authenticated/rides',
+  id: '/rides',
   path: '/rides',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedTrackRoute = AuthenticatedTrackRouteImport.update({
-  id: '/_authenticated/track',
+  id: '/track',
   path: '/track',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const OnboardingStepRoute = OnboardingStepRouteImport.update({
   id: '/onboarding/$step',
@@ -115,6 +120,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/create-account': typeof CreateAccountRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/sign-in': typeof SignInRoute
@@ -159,6 +165,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/create-account'
     | '/forgot-password'
     | '/sign-in'
@@ -174,16 +181,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   CreateAccountRoute: typeof CreateAccountRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   SignInRoute: typeof SignInRoute
   WelcomeRoute: typeof WelcomeRoute
-  AuthenticatedBookingRoute: typeof AuthenticatedBookingRoute
-  AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
-  AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
-  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
-  AuthenticatedRidesRoute: typeof AuthenticatedRidesRoute
-  AuthenticatedTrackRoute: typeof AuthenticatedTrackRoute
   OnboardingStepRoute: typeof OnboardingStepRoute
 }
 
@@ -194,6 +196,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/create-account': {
@@ -229,42 +238,42 @@ declare module '@tanstack/react-router' {
       path: '/booking'
       fullPath: '/booking'
       preLoaderRoute: typeof AuthenticatedBookingRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/home': {
       id: '/_authenticated/home'
       path: '/home'
       fullPath: '/home'
       preLoaderRoute: typeof AuthenticatedHomeRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/notifications': {
       id: '/_authenticated/notifications'
       path: '/notifications'
       fullPath: '/notifications'
       preLoaderRoute: typeof AuthenticatedNotificationsRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/profile': {
       id: '/_authenticated/profile'
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/rides': {
       id: '/_authenticated/rides'
       path: '/rides'
       fullPath: '/rides'
       preLoaderRoute: typeof AuthenticatedRidesRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/track': {
       id: '/_authenticated/track'
       path: '/track'
       fullPath: '/track'
       preLoaderRoute: typeof AuthenticatedTrackRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/onboarding/$step': {
       id: '/onboarding/$step'
@@ -276,18 +285,34 @@ declare module '@tanstack/react-router' {
   }
 }
 
-const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  CreateAccountRoute: CreateAccountRoute,
-  ForgotPasswordRoute: ForgotPasswordRoute,
-  SignInRoute: SignInRoute,
-  WelcomeRoute: WelcomeRoute,
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedBookingRoute: typeof AuthenticatedBookingRoute
+  AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
+  AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedRidesRoute: typeof AuthenticatedRidesRoute
+  AuthenticatedTrackRoute: typeof AuthenticatedTrackRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedBookingRoute: AuthenticatedBookingRoute,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
   AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedRidesRoute: AuthenticatedRidesRoute,
   AuthenticatedTrackRoute: AuthenticatedTrackRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  CreateAccountRoute: CreateAccountRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  SignInRoute: SignInRoute,
+  WelcomeRoute: WelcomeRoute,
   OnboardingStepRoute: OnboardingStepRoute,
 }
 export const routeTree = rootRouteImport
