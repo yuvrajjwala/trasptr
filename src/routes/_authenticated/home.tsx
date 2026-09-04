@@ -130,16 +130,44 @@ function AddressRow({
 }
 
 function HomeScreen() {
+  const { user } = Route.useRouteContext();
+  const email = user.email ?? "Member";
+  const name = email.split("@")[0];
+  const initials = name.slice(0, 2).toUpperCase();
+  const greetingHour = new Date().getHours();
+  const greeting =
+    greetingHour < 12 ? "Good Morning" : greetingHour < 18 ? "Good Afternoon" : "Good Evening";
+  const dateLabel = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "short",
+    day: "numeric",
+  });
+
+  const { data: nextRide } = useQuery({
+    queryKey: ["next-ride"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("bookings")
+        .select("*")
+        .gte("pickup_at", new Date().toISOString())
+        .order("pickup_at", { ascending: true })
+        .limit(1)
+        .maybeSingle();
+      if (error) throw error;
+      return data as BookingRow | null;
+    },
+  });
+
   return (
     <AppScreen>
       {/* Top bar */}
       <header className="flex items-start justify-between gap-4 px-7 pt-14">
         <div className="min-w-0">
           <span className="eb-eyebrow text-[0.625rem] text-gold/85">
-            Friday, Sep 4
+            {dateLabel}
           </span>
           <h1 className="mt-2.5 font-display text-[2rem] font-light leading-none tracking-tight text-foreground">
-            Good Morning, Alex
+            {greeting}, {name}
           </h1>
           <p className="mt-3 text-[0.875rem] text-muted-foreground">
             Where would you like to go?
@@ -152,14 +180,13 @@ function HomeScreen() {
             className="relative grid h-11 w-11 place-items-center rounded-full border border-border bg-surface text-muted-foreground transition-colors hover:text-gold"
           >
             <Bell className="h-[18px] w-[18px]" strokeWidth={1.5} />
-            <span className="absolute right-3 top-3 h-1.5 w-1.5 rounded-full bg-gold" />
           </Link>
           <Link
             to="/profile"
             aria-label="Profile"
             className="grid h-11 w-11 place-items-center rounded-full border border-gold/40 bg-surface-raised font-display text-[0.9375rem] tracking-widest text-gold"
           >
-            AR
+            {initials}
           </Link>
         </div>
       </header>
