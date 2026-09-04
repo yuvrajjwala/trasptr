@@ -144,6 +144,57 @@ function Booking() {
 
   const back = () => (step === 0 ? navigate({ to: "/home" }) : setStep(step - 1));
 
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const confirmBooking = async () => {
+    setError(null);
+    setBusy(true);
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) {
+      setError("Your session has expired. Please sign in again.");
+      setBusy(false);
+      return;
+    }
+
+    const pickupAt = `${date}T${time}:00`;
+    const addonRows = ADDONS.filter((a) => addons.includes(a.id)).map((a) => ({
+      id: a.id,
+      title: a.title,
+    }));
+
+    const { error: insertError } = await supabase.from("bookings").insert({
+      user_id: user.id,
+      service,
+      service_title: serviceMeta.title,
+      pickup,
+      destination: destination || null,
+      pickup_at: pickupAt,
+      passengers,
+      luggage,
+      airport: isAirport ? airport : null,
+      direction: isAirport ? direction : null,
+      airline: isAirport ? airline : null,
+      flight: isAirport ? flight : null,
+      hours: isHourly ? hours : null,
+      stops: isHourly ? stops : null,
+      addons: addonRows,
+      instructions: instructions || null,
+      estimate_total: total,
+      status: "confirmed",
+    });
+
+    setBusy(false);
+    if (insertError) {
+      setError(insertError.message);
+      return;
+    }
+    navigate({ to: "/rides" });
+  };
+
+
   return (
     <Screen>
       <div className="flex min-h-screen flex-col pb-12">
