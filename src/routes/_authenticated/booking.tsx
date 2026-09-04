@@ -665,11 +665,23 @@ function Booking() {
         </main>
 
         <footer className="sticky bottom-0 mt-10 border-t border-border bg-background/95 px-7 pb-8 pt-5 backdrop-blur-sm">
+          {step === 4 && error ? (
+            <div className="mb-4 flex items-center gap-3 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3">
+              <AlertCircle className="h-4 w-4 shrink-0 text-destructive" strokeWidth={1.5} />
+              <span className="min-w-0 text-[0.8125rem] leading-relaxed text-foreground/90">
+                {error}
+              </span>
+            </div>
+          ) : null}
           <GoldButton
-            onClick={() => (step === 4 ? undefined : setStep(step + 1))}
-            className={cn(step === 4 && "cursor-default")}
+            onClick={() => (step === 4 ? confirmBooking() : setStep(step + 1))}
+            disabled={busy}
           >
-            {step === 4 ? "Continue to Payment" : "Continue"}
+            {step === 4
+              ? busy
+                ? "Confirming…"
+                : "Confirm Booking"
+              : "Continue"}
           </GoldButton>
         </footer>
       </div>
