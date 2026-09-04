@@ -17,6 +17,7 @@ import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as AuthenticatedBookingRouteImport } from './routes/_authenticated/booking'
 import { Route as AuthenticatedBookingConfirmedRouteImport } from './routes/_authenticated/booking-confirmed'
+import { Route as AuthenticatedDriverAssignedRouteImport } from './routes/_authenticated/driver-assigned'
 import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
 import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated/notifications'
 import { Route as AuthenticatedPaymentRouteImport } from './routes/_authenticated/payment'
@@ -64,6 +65,12 @@ const AuthenticatedBookingConfirmedRoute =
   AuthenticatedBookingConfirmedRouteImport.update({
     id: '/booking-confirmed',
     path: '/booking-confirmed',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDriverAssignedRoute =
+  AuthenticatedDriverAssignedRouteImport.update({
+    id: '/driver-assigned',
+    path: '/driver-assigned',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
@@ -117,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/welcome': typeof WelcomeRoute
   '/booking': typeof AuthenticatedBookingRoute
   '/booking-confirmed': typeof AuthenticatedBookingConfirmedRoute
+  '/driver-assigned': typeof AuthenticatedDriverAssignedRoute
   '/home': typeof AuthenticatedHomeRoute
   '/notifications': typeof AuthenticatedNotificationsRoute
   '/payment': typeof AuthenticatedPaymentRoute
@@ -134,6 +142,7 @@ export interface FileRoutesByTo {
   '/welcome': typeof WelcomeRoute
   '/booking': typeof AuthenticatedBookingRoute
   '/booking-confirmed': typeof AuthenticatedBookingConfirmedRoute
+  '/driver-assigned': typeof AuthenticatedDriverAssignedRoute
   '/home': typeof AuthenticatedHomeRoute
   '/notifications': typeof AuthenticatedNotificationsRoute
   '/payment': typeof AuthenticatedPaymentRoute
@@ -153,6 +162,7 @@ export interface FileRoutesById {
   '/welcome': typeof WelcomeRoute
   '/_authenticated/booking': typeof AuthenticatedBookingRoute
   '/_authenticated/booking-confirmed': typeof AuthenticatedBookingConfirmedRoute
+  '/_authenticated/driver-assigned': typeof AuthenticatedDriverAssignedRoute
   '/_authenticated/home': typeof AuthenticatedHomeRoute
   '/_authenticated/notifications': typeof AuthenticatedNotificationsRoute
   '/_authenticated/payment': typeof AuthenticatedPaymentRoute
@@ -172,6 +182,7 @@ export interface FileRouteTypes {
     | '/welcome'
     | '/booking'
     | '/booking-confirmed'
+    | '/driver-assigned'
     | '/home'
     | '/notifications'
     | '/payment'
@@ -189,6 +200,7 @@ export interface FileRouteTypes {
     | '/welcome'
     | '/booking'
     | '/booking-confirmed'
+    | '/driver-assigned'
     | '/home'
     | '/notifications'
     | '/payment'
@@ -207,6 +219,7 @@ export interface FileRouteTypes {
     | '/welcome'
     | '/_authenticated/booking'
     | '/_authenticated/booking-confirmed'
+    | '/_authenticated/driver-assigned'
     | '/_authenticated/home'
     | '/_authenticated/notifications'
     | '/_authenticated/payment'
@@ -285,6 +298,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedBookingConfirmedRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/driver-assigned': {
+      id: '/_authenticated/driver-assigned'
+      path: '/driver-assigned'
+      fullPath: '/driver-assigned'
+      preLoaderRoute: typeof AuthenticatedDriverAssignedRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/home': {
       id: '/_authenticated/home'
       path: '/home'
@@ -347,6 +367,7 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedBookingRoute: typeof AuthenticatedBookingRoute
   AuthenticatedBookingConfirmedRoute: typeof AuthenticatedBookingConfirmedRoute
+  AuthenticatedDriverAssignedRoute: typeof AuthenticatedDriverAssignedRoute
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
   AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
   AuthenticatedPaymentRoute: typeof AuthenticatedPaymentRoute
@@ -359,6 +380,7 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedBookingRoute: AuthenticatedBookingRoute,
   AuthenticatedBookingConfirmedRoute: AuthenticatedBookingConfirmedRoute,
+  AuthenticatedDriverAssignedRoute: AuthenticatedDriverAssignedRoute,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
   AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
   AuthenticatedPaymentRoute: AuthenticatedPaymentRoute,
