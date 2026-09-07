@@ -38,22 +38,37 @@ export function Wordmark({
   className?: string;
 }) {
   const sizes = {
-    sm: "text-[1.375rem]",
-    md: "text-[1.75rem]",
-    lg: "text-[2.5rem]",
+    sm: "text-[1.05rem]",
+    md: "text-[1.35rem]",
+    lg: "text-[1.9rem]",
+  } as const;
+
+  const marks = {
+    sm: "h-8 w-8 text-[0.55rem]",
+    md: "h-10 w-10 text-[0.65rem]",
+    lg: "h-14 w-14 text-[0.8rem]",
   } as const;
 
   return (
     <div className={cn("flex flex-col items-center", className)}>
       <span
+        aria-hidden="true"
         className={cn(
-          "font-display font-light leading-none tracking-[0.18em] text-ivory",
+          "mb-3 grid rotate-45 place-items-center border border-gold/70",
+          marks[size],
+        )}
+      >
+        <span className="-rotate-45 font-display font-medium text-gold">TBL</span>
+      </span>
+      <span
+        className={cn(
+          "text-center font-display font-light leading-none tracking-[0.14em] text-ivory",
           sizes[size],
         )}
       >
-        EAGLE BLACK
+        THREE BLACK
       </span>
-      <span className="mt-2 eb-eyebrow text-gold/85">Limousine</span>
+      <span className="mt-2 eb-eyebrow text-gold/85">Limousine LLC</span>
     </div>
   );
 }
