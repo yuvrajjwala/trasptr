@@ -15,13 +15,13 @@ import { FEATURED_RIDE, PAYMENT_SUMMARY, ESTIMATED_TOTAL } from "@/lib/demo";
 export const Route = createFileRoute("/_authenticated/ride-details")({
   head: () => ({
     meta: [
-      { title: "Ride Details — Eagle Black Limo" },
+      { title: "Ride Details — Three Black Limousine LLC" },
       {
         name: "description",
         content:
-          "Full itinerary, vehicle, flight information, add-ons and payment summary for your Eagle Black Limo reservation.",
+          "Full itinerary, vehicle, flight information, add-ons and payment summary for your Three Black Limousine LLC reservation.",
       },
-      { property: "og:title", content: "Ride Details — Eagle Black Limo" },
+      { property: "og:title", content: "Ride Details — Three Black Limousine LLC" },
       {
         property: "og:description",
         content: "Itinerary, vehicle, add-ons and payment summary.",

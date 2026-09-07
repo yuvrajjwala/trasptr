@@ -19,13 +19,13 @@ import {
 export const Route = createFileRoute("/_authenticated/rides")({
   head: () => ({
     meta: [
-      { title: "My Rides — Eagle Black Limo" },
+      { title: "My Rides — Three Black Limousine LLC" },
       {
         name: "description",
         content:
-          "Review upcoming, completed and cancelled chauffeured journeys with Eagle Black Limo across Chicago and the western suburbs.",
+          "Review upcoming, completed and cancelled chauffeured journeys with Three Black Limousine LLC across Chicago and the western suburbs.",
       },
-      { property: "og:title", content: "My Rides — Eagle Black Limo" },
+      { property: "og:title", content: "My Rides — Three Black Limousine LLC" },
       {
         property: "og:description",
         content: "Upcoming, completed and cancelled journeys at a glance.",
@@ -56,7 +56,7 @@ function serviceIcon(service: string) {
 function bookingToRide(b: BookingRow): DemoRide {
   return {
     id: b.id,
-    reference: `EBL-${b.id.slice(0, 5).toUpperCase()}`,
+    reference: `TBL-${b.id.slice(0, 5).toUpperCase()}`,
     title: b.service_title,
     pickup: b.pickup,
     destination: b.destination ?? "On your schedule",

@@ -14,7 +14,7 @@ import { FEATURED_RIDE, PAYMENT_SUMMARY, ESTIMATED_TOTAL } from "@/lib/demo";
 export const Route = createFileRoute("/_authenticated/booking-confirmed")({
   head: () => ({
     meta: [
-      { title: "Reservation Confirmed — Eagle Black Limo" },
+      { title: "Reservation Confirmed — Three Black Limousine LLC" },
       {
         name: "description",
         content:
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/_authenticated/booking-confirmed")({
       },
       {
         property: "og:title",
-        content: "Reservation Confirmed — Eagle Black Limo",
+        content: "Reservation Confirmed — Three Black Limousine LLC",
       },
       {
         property: "og:description",

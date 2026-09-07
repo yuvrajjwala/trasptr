@@ -9,15 +9,15 @@ import { CHAUFFEUR, FEATURED_RIDE } from "@/lib/demo";
 export const Route = createFileRoute("/_authenticated/track")({
   head: () => ({
     meta: [
-      { title: "Live Chauffeur Tracking — Eagle Black Limo" },
+      { title: "Live Chauffeur Tracking — Three Black Limousine LLC" },
       {
         name: "description",
         content:
-          "Follow your Eagle Black Limo chauffeur en route to your pickup, with live route, vehicle details and arrival window.",
+          "Follow your Three Black Limousine LLC chauffeur en route to your pickup, with live route, vehicle details and arrival window.",
       },
       {
         property: "og:title",
-        content: "Live Chauffeur Tracking — Eagle Black Limo",
+        content: "Live Chauffeur Tracking — Three Black Limousine LLC",
       },
       {
         property: "og:description",
