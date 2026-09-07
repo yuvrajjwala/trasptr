@@ -11,13 +11,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/_authenticated/payment")({
   head: () => ({
     meta: [
-      { title: "Payment — Eagle Black Limo" },
+      { title: "Payment — Three Black Limousine LLC" },
       {
         name: "description",
         content:
-          "Choose a payment method and confirm your chauffeured reservation with Eagle Black Limo.",
+          "Choose a payment method and confirm your chauffeured reservation with Three Black Limousine LLC.",
       },
-      { property: "og:title", content: "Payment — Eagle Black Limo" },
+      { property: "og:title", content: "Payment — Three Black Limousine LLC" },
       {
         property: "og:description",
         content: "Select a card or PayPal and confirm your reservation.",

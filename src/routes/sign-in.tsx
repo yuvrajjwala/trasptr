@@ -18,16 +18,16 @@ import {
 export const Route = createFileRoute("/sign-in")({
   head: () => ({
     meta: [
-      { title: "Sign In — Eagle Black Limo" },
+      { title: "Sign In — Three Black Limousine LLC" },
       {
         name: "description",
         content:
-          "Sign in to your Eagle Black Limo account to book a private chauffeur or review upcoming transfers.",
+          "Sign in to your Three Black Limousine LLC account to book a private chauffeur or review upcoming transfers.",
       },
-      { property: "og:title", content: "Sign In — Eagle Black Limo" },
+      { property: "og:title", content: "Sign In — Three Black Limousine LLC" },
       {
         property: "og:description",
-        content: "Sign in to book a private chauffeur with Eagle Black Limo.",
+        content: "Sign in to book a private chauffeur with Three Black Limousine LLC.",
       },
     ],
   }),
