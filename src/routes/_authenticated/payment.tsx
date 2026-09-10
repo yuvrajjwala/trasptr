@@ -11,13 +11,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/_authenticated/payment")({
   head: () => ({
     meta: [
-      { title: "Payment — East Wind Limo" },
+      { title: "Payment — TRNSPTR" },
       {
         name: "description",
         content:
-          "Choose a payment method and confirm your chauffeured reservation with East Wind Limo.",
+          "Choose a payment method and confirm your chauffeured reservation with TRNSPTR.",
       },
-      { property: "og:title", content: "Payment — East Wind Limo" },
+      { property: "og:title", content: "Payment — TRNSPTR" },
       {
         property: "og:description",
         content: "Select a card or PayPal and confirm your reservation.",

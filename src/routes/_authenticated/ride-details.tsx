@@ -15,13 +15,13 @@ import { FEATURED_RIDE, PAYMENT_SUMMARY, ESTIMATED_TOTAL } from "@/lib/demo";
 export const Route = createFileRoute("/_authenticated/ride-details")({
   head: () => ({
     meta: [
-      { title: "Ride Details — East Wind Limo" },
+      { title: "Ride Details — TRNSPTR" },
       {
         name: "description",
         content:
-          "Full itinerary, vehicle, flight information, add-ons and payment summary for your East Wind Limo reservation.",
+          "Full itinerary, vehicle, flight information, add-ons and payment summary for your TRNSPTR reservation.",
       },
-      { property: "og:title", content: "Ride Details — East Wind Limo" },
+      { property: "og:title", content: "Ride Details — TRNSPTR" },
       {
         property: "og:description",
         content: "Itinerary, vehicle, add-ons and payment summary.",

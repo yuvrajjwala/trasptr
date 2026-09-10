@@ -36,13 +36,13 @@ import { GoldButton, Screen } from "@/components/eb/ui";
 export const Route = createFileRoute("/_authenticated/booking")({
   head: () => ({
     meta: [
-      { title: "Arrange a Chauffeur — East Wind Limo" },
+      { title: "Arrange a Chauffeur — TRNSPTR" },
       {
         name: "description",
         content:
           "Select your service, trip details, vehicle and add-ons, then review an estimated quote for your private chauffeured journey.",
       },
-      { property: "og:title", content: "Arrange a Chauffeur — East Wind Limo" },
+      { property: "og:title", content: "Arrange a Chauffeur — TRNSPTR" },
       {
         property: "og:description",
         content:

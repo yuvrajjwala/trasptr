@@ -58,17 +58,19 @@ export function Wordmark({
           marks[size],
         )}
       >
-        <span className="-rotate-45 font-display font-medium text-gold">EWL</span>
+        <span className="-rotate-45 font-display font-medium text-gold">TRN</span>
       </span>
       <span
         className={cn(
-          "text-center font-display font-light leading-none tracking-[0.14em] text-ivory",
+          "text-center font-display font-light leading-none tracking-[0.18em] text-ivory",
           sizes[size],
         )}
       >
-        EAST WIND
+        TRNSPTR
       </span>
-      <span className="mt-2 eb-eyebrow text-gold/85">Limo</span>
+      <span className="mt-2 eb-eyebrow text-center text-gold/85">
+        Transportation Services
+      </span>
     </div>
   );
 }

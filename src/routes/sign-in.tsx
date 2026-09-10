@@ -18,16 +18,16 @@ import {
 export const Route = createFileRoute("/sign-in")({
   head: () => ({
     meta: [
-      { title: "Sign In — East Wind Limo" },
+      { title: "Sign In — TRNSPTR" },
       {
         name: "description",
         content:
-          "Sign in to your East Wind Limo account to book a private chauffeur or review upcoming transfers.",
+          "Sign in to your TRNSPTR account to book a private chauffeur or review upcoming transfers.",
       },
-      { property: "og:title", content: "Sign In — East Wind Limo" },
+      { property: "og:title", content: "Sign In — TRNSPTR" },
       {
         property: "og:description",
-        content: "Sign in to book a private chauffeur with East Wind Limo.",
+        content: "Sign in to book a private chauffeur with TRNSPTR.",
       },
     ],
   }),
