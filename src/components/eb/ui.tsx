@@ -62,13 +62,15 @@ export function Wordmark({
       </span>
       <span
         className={cn(
-          "text-center font-display font-light leading-none tracking-[0.14em] text-ivory",
+          "text-center font-display font-light leading-none tracking-[0.18em] text-ivory",
           sizes[size],
         )}
       >
         TRNSPTR
       </span>
-      <span className="mt-2 eb-eyebrow text-gold/85">Limo</span>
+      <span className="mt-2 eb-eyebrow text-center text-gold/85">
+        Transportation Services
+      </span>
     </div>
   );
 }

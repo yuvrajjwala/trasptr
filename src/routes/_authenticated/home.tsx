@@ -47,36 +47,12 @@ export const Route = createFileRoute("/_authenticated/home")({
 });
 
 const SERVICES = [
-  {
-    title: "Airport Transfer",
-    description: "O'Hare & Midway pickups",
-    Icon: Plane,
-  },
-  {
-    title: "Point-to-Point",
-    description: "Travel directly to your destination",
-    Icon: Navigation,
-  },
-  {
-    title: "Corporate Travel",
-    description: "Professional travel, simplified",
-    Icon: Building2,
-  },
-  {
-    title: "Hourly Chauffeur",
-    description: "Flexible travel on your schedule",
-    Icon: Clock,
-  },
-  {
-    title: "Weddings & Occasions",
-    description: "Arrive in exceptional style",
-    Icon: Sparkles,
-  },
-  {
-    title: "Long-Distance Travel",
-    description: "Comfort beyond the city",
-    Icon: RouteIcon,
-  },
+  { title: "Airport Transfer", description: "Call for More Information", Icon: Plane },
+  { title: "Business Service", description: "Call for More Information", Icon: Building2 },
+  { title: "Golf Outings", description: "Call for More Information", Icon: Flag },
+  { title: "Special Occasions", description: "Call for More Information", Icon: Sparkles },
+  { title: "Weddings", description: "Call for More Information", Icon: Gem },
+  { title: "Wine Tours", description: "Call for More Information", Icon: Wine },
 ] as const;
 
 const QUICK_ACTIONS = [
