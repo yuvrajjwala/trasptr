@@ -6,9 +6,11 @@
 
 /*
  * TRNSPTR — Design System (locked)
- * Quiet luxury: deep charcoal-black surfaces, champagne gold accent,
+ * Quiet luxury: deep charcoal-black surfaces, azure accent (#09acf2),
  * white typography, refined gray secondary text.
  * Display type: Cormorant Garamond. UI type: Inter.
+ * NOTE: the --gold* / --shadow-gold token names are historical — they now
+ * carry the azure accent. Renaming them touches every screen, so they stay.
  * Do not redesign these tokens in future work.
  */
 
@@ -67,31 +69,31 @@
   --popover: oklch(0.175 0.005 70);
   --popover-foreground: oklch(0.985 0.002 90);
 
-  /* Accent — muted champagne gold */
-  --gold: oklch(0.79 0.082 84);
-  --gold-soft: oklch(0.88 0.045 88);
-  --gold-deep: oklch(0.62 0.075 78);
-  --ivory: oklch(0.965 0.006 85);
+  /* Accent — azure #09acf2 */
+  --gold: oklch(0.7054 0.1524 236.9);
+  --gold-soft: oklch(0.8 0.11 236.9);
+  --gold-deep: oklch(0.55 0.14 236.9);
+  --ivory: oklch(0.965 0.006 236.9);
 
-  --primary: oklch(0.79 0.082 84);
-  --primary-foreground: oklch(0.16 0.006 70);
+  --primary: oklch(0.7054 0.1524 236.9);
+  --primary-foreground: oklch(0.16 0.006 236.9);
   --secondary: oklch(0.215 0.006 70);
-  --secondary-foreground: oklch(0.965 0.006 85);
+  --secondary-foreground: oklch(0.965 0.006 236.9);
   --muted: oklch(0.215 0.006 70);
   --muted-foreground: oklch(0.68 0.006 80);
   --accent: oklch(0.215 0.006 70);
-  --accent-foreground: oklch(0.965 0.006 85);
+  --accent-foreground: oklch(0.965 0.006 236.9);
   --destructive: oklch(0.577 0.19 27);
   --destructive-foreground: oklch(0.985 0.002 90);
 
   --border: oklch(1 0 0 / 9%);
   --hairline: oklch(1 0 0 / 7%);
   --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.79 0.082 84 / 45%);
+  --ring: oklch(0.7054 0.1524 236.9 / 45%);
 
   /* Depth */
   --shadow-elevated: 0 24px 60px -28px oklch(0 0 0 / 0.85);
-  --shadow-gold: 0 16px 40px -20px oklch(0.79 0.082 84 / 0.35);
+  --shadow-gold: 0 16px 40px -20px oklch(0.7054 0.1524 236.9 / 0.35);
 }
 
 .dark {

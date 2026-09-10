@@ -90,7 +90,7 @@ export function GoldButton({ children, className, ...props }: ButtonProps) {
         "inline-flex h-14 w-full items-center justify-center rounded-xl bg-gold px-6",
         "text-[0.8125rem] font-semibold uppercase tracking-[0.2em] text-primary-foreground",
         "transition-all duration-300 active:scale-[0.985] hover:bg-gold-soft",
-        "shadow-[0_16px_40px_-20px_oklch(0.79_0.082_84/0.5)]",
+        "shadow-[0_16px_40px_-20px_oklch(0.7054_0.1524_236.9/0.5)]",
         className,
       )}
     >

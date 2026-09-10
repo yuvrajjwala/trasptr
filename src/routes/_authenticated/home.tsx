@@ -6,15 +6,16 @@ import {
   Building2,
   CalendarClock,
   ChevronRight,
-  Clock,
+  Flag,
+  Gem,
   Headphones,
   MapPin,
-  Navigation,
+  Phone,
   Plane,
-  Route as RouteIcon,
   ShieldCheck,
   Sofa,
   Sparkles,
+  Wine,
 } from "lucide-react";
 
 import heroSuv from "@/assets/hero-suv.jpg";
@@ -212,19 +213,29 @@ function HomeScreen() {
       <section className="mt-12">
         <div className="px-7">
           <SectionHeading eyebrow="Trip Services" title="Choose Your Service" />
+          <p className="mt-3 max-w-[20rem] text-[0.875rem] leading-relaxed text-muted-foreground">
+            White Glove Transportation services for all occasions.
+          </p>
         </div>
-        <div className="mt-6 grid grid-cols-2 gap-3 px-7">
+        <div className="mt-7 grid grid-cols-2 gap-3 px-7">
           {SERVICES.map(({ title, description, Icon }) => (
             <Link
               key={title}
               to="/booking"
-              className="flex h-full flex-col rounded-2xl border border-border bg-surface p-4 text-left transition-colors hover:bg-surface-raised"
+              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface p-5 text-left transition-all duration-300 hover:border-gold/40 hover:bg-surface-raised hover:shadow-[0_18px_44px_-30px_oklch(0.7054_0.1524_236.9/0.6)]"
             >
-              <Icon className="h-5 w-5 text-gold" strokeWidth={1.25} />
-              <span className="mt-5 block text-[0.875rem] font-medium leading-snug text-foreground">
-                {title}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 top-0 h-px opacity-0 transition-opacity duration-300 eb-gold-rule group-hover:opacity-100"
+              />
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-border bg-background text-gold transition-colors duration-300 group-hover:border-gold/45">
+                <Icon className="h-[18px] w-[18px]" strokeWidth={1.25} />
               </span>
-              <span className="mt-1.5 block text-[0.75rem] leading-relaxed text-muted-foreground">
+              <h3 className="mt-5 text-[0.875rem] font-medium leading-snug text-foreground">
+                {title}
+              </h3>
+              <span className="mt-auto flex items-center gap-1.5 pt-4 text-[0.6875rem] leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-gold/90">
+                <Phone className="h-3 w-3 shrink-0" strokeWidth={1.5} />
                 {description}
               </span>
             </Link>

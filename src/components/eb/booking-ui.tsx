@@ -86,7 +86,7 @@ export function SelectCard({
       className={cn(
         "flex w-full items-start gap-4 rounded-2xl border p-5 text-left transition-all duration-300",
         selected
-          ? "border-gold/50 bg-surface-raised shadow-[0_18px_44px_-30px_oklch(0.79_0.082_84/0.6)]"
+          ? "border-gold/50 bg-surface-raised shadow-[0_18px_44px_-30px_oklch(0.7054_0.1524_236.9/0.6)]"
           : "border-border bg-surface hover:bg-surface-raised",
       )}
     >

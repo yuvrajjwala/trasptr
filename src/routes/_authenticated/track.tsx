@@ -43,12 +43,12 @@ function MapCanvas() {
       >
         <defs>
           <linearGradient id="ebRoute" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="oklch(0.62 0.075 78)" />
-            <stop offset="100%" stopColor="oklch(0.88 0.045 88)" />
+            <stop offset="0%" stopColor="oklch(0.55 0.14 236.9)" />
+            <stop offset="100%" stopColor="oklch(0.8 0.11 236.9)" />
           </linearGradient>
           <radialGradient id="ebGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="oklch(0.79 0.082 84 / 0.20)" />
-            <stop offset="100%" stopColor="oklch(0.79 0.082 84 / 0)" />
+            <stop offset="0%" stopColor="oklch(0.7054 0.1524 236.9 / 0.20)" />
+            <stop offset="100%" stopColor="oklch(0.7054 0.1524 236.9 / 0)" />
           </radialGradient>
         </defs>
 
