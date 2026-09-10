@@ -26,7 +26,7 @@ import { formatPickupDate, formatPickupTime, type BookingRow } from "@/lib/booki
 export const Route = createFileRoute("/_authenticated/home")({
   head: () => ({
     meta: [
-      { title: "Your Chauffeur Dashboard — East Wind Limo" },
+      { title: "Your Chauffeur Dashboard — TRNSPTR" },
       {
         name: "description",
         content:
@@ -34,12 +34,12 @@ export const Route = createFileRoute("/_authenticated/home")({
       },
       {
         property: "og:title",
-        content: "Your Chauffeur Dashboard — East Wind Limo",
+        content: "Your Chauffeur Dashboard — TRNSPTR",
       },
       {
         property: "og:description",
         content:
-          "Book a private chauffeur and manage executive travel with East Wind Limo.",
+          "Book a private chauffeur and manage executive travel with TRNSPTR.",
       },
     ],
   }),
@@ -364,7 +364,7 @@ function HomeScreen() {
       <section className="mt-12 px-7">
         <div className="rounded-2xl border border-border bg-surface p-6">
           <span className="eb-eyebrow text-[0.625rem] text-gold/85">
-            Why East Wind Limo
+            Why TRNSPTR
           </span>
           <div className="mt-6 space-y-5">
             {TRUST.map(({ title, Icon }) => (

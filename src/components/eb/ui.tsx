@@ -58,7 +58,7 @@ export function Wordmark({
           marks[size],
         )}
       >
-        <span className="-rotate-45 font-display font-medium text-gold">EWL</span>
+        <span className="-rotate-45 font-display font-medium text-gold">TRN</span>
       </span>
       <span
         className={cn(
@@ -66,7 +66,7 @@ export function Wordmark({
           sizes[size],
         )}
       >
-        EAST WIND
+        TRNSPTR
       </span>
       <span className="mt-2 eb-eyebrow text-gold/85">Limo</span>
     </div>

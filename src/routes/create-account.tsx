@@ -15,13 +15,13 @@ import {
 export const Route = createFileRoute("/create-account")({
   head: () => ({
     meta: [
-      { title: "Create Account — East Wind Limo" },
+      { title: "Create Account — TRNSPTR" },
       {
         name: "description",
         content:
-          "Create your East Wind Limo account to book luxury black SUV chauffeur service across Chicago and the western suburbs.",
+          "Create your TRNSPTR account to book luxury black SUV chauffeur service across Chicago and the western suburbs.",
       },
-      { property: "og:title", content: "Create Account — East Wind Limo" },
+      { property: "og:title", content: "Create Account — TRNSPTR" },
       {
         property: "og:description",
         content:
@@ -148,7 +148,7 @@ function CreateAccount() {
 
           <div className="mt-2">
             <CheckboxRow checked={agreed} onChange={setAgreed}>
-              I agree to the Terms of Service and Privacy Policy of East Wind
+              I agree to the Terms of Service and Privacy Policy of TRNSPTR
               Limo.
             </CheckboxRow>
           </div>

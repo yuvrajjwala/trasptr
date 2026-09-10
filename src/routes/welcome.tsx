@@ -6,13 +6,13 @@ import { GoldButton, Screen, TextLink, Wordmark } from "@/components/eb/ui";
 export const Route = createFileRoute("/welcome")({
   head: () => ({
     meta: [
-      { title: "Travel Beyond the Ordinary — East Wind Limo" },
+      { title: "Travel Beyond the Ordinary — TRNSPTR" },
       {
         name: "description",
         content:
           "Professional chauffeur service, airport transfers and executive travel in luxury black SUVs across Chicagoland.",
       },
-      { property: "og:title", content: "Travel Beyond the Ordinary — East Wind Limo" },
+      { property: "og:title", content: "Travel Beyond the Ordinary — TRNSPTR" },
       {
         property: "og:description",
         content:

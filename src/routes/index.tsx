@@ -7,13 +7,13 @@ import { Screen, Wordmark } from "@/components/eb/ui";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "East Wind Limo — Luxury in Every Mile" },
+      { title: "TRNSPTR — Luxury in Every Mile" },
       {
         name: "description",
         content:
           "Private chauffeur and black SUV service for Chicago and the western suburbs. Executive travel, airport transfers, quiet luxury.",
       },
-      { property: "og:title", content: "East Wind Limo — Luxury in Every Mile" },
+      { property: "og:title", content: "TRNSPTR — Luxury in Every Mile" },
       {
         property: "og:description",
         content:
@@ -43,7 +43,7 @@ function Splash() {
         type="button"
         onClick={() => navigate({ to: "/welcome" })}
         className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden text-left"
-        aria-label="Enter East Wind Limo"
+        aria-label="Enter TRNSPTR"
       >
         <img
           src={splashDetail}

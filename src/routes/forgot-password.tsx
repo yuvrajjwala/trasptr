@@ -8,16 +8,16 @@ import { Field, GoldButton, Screen, TextLink, Wordmark } from "@/components/eb/u
 export const Route = createFileRoute("/forgot-password")({
   head: () => ({
     meta: [
-      { title: "Reset Your Password — East Wind Limo" },
+      { title: "Reset Your Password — TRNSPTR" },
       {
         name: "description",
         content:
-          "Request a secure reset link for your East Wind Limo chauffeur account.",
+          "Request a secure reset link for your TRNSPTR chauffeur account.",
       },
-      { property: "og:title", content: "Reset Your Password — East Wind Limo" },
+      { property: "og:title", content: "Reset Your Password — TRNSPTR" },
       {
         property: "og:description",
-        content: "Request a secure reset link for your East Wind Limo account.",
+        content: "Request a secure reset link for your TRNSPTR account.",
       },
     ],
   }),
