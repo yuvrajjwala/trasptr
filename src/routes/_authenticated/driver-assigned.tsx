@@ -10,13 +10,13 @@ import { CHAUFFEUR } from "@/lib/demo";
 export const Route = createFileRoute("/_authenticated/driver-assigned")({
   head: () => ({
     meta: [
-      { title: "Chauffeur Assigned — Three Black Limousine LLC" },
+      { title: "Chauffeur Assigned — East Wind Limo" },
       {
         name: "description",
         content:
-          "Meet your assigned Three Black Limousine LLC chauffeur, view vehicle details and estimated arrival time.",
+          "Meet your assigned East Wind Limo chauffeur, view vehicle details and estimated arrival time.",
       },
-      { property: "og:title", content: "Chauffeur Assigned — Three Black Limousine LLC" },
+      { property: "og:title", content: "Chauffeur Assigned — East Wind Limo" },
       {
         property: "og:description",
         content: "Your chauffeur, vehicle and estimated arrival time.",

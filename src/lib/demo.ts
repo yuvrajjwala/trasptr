@@ -22,8 +22,8 @@ export interface DemoRide {
 
 export const DEMO_RIDES: DemoRide[] = [
   {
-    id: "tbl-28419",
-    reference: "TBL-28419",
+    id: "ewl-28419",
+    reference: "EWL-28419",
     title: "O'Hare Airport Transfer",
     pickup: "Oak Brook, IL 60523",
     destination: "O'Hare International — Terminal 1",
@@ -38,8 +38,8 @@ export const DEMO_RIDES: DemoRide[] = [
     instructions: "Please call on arrival. Two large suitcases.",
   },
   {
-    id: "tbl-28502",
-    reference: "TBL-28502",
+    id: "ewl-28502",
+    reference: "EWL-28502",
     title: "Corporate Transfer",
     pickup: "Willis Tower, Chicago",
     destination: "Hinsdale, IL",
@@ -51,8 +51,8 @@ export const DEMO_RIDES: DemoRide[] = [
     addons: ["Silent Ride"],
   },
   {
-    id: "tbl-27884",
-    reference: "TBL-27884",
+    id: "ewl-27884",
+    reference: "EWL-27884",
     title: "Midway Airport Transfer",
     pickup: "Naperville, IL",
     destination: "Midway International",
@@ -65,8 +65,8 @@ export const DEMO_RIDES: DemoRide[] = [
     airport: true,
   },
   {
-    id: "tbl-27610",
-    reference: "TBL-27610",
+    id: "ewl-27610",
+    reference: "EWL-27610",
     title: "Evening Point-to-Point",
     pickup: "Elmhurst, IL",
     destination: "The Langham, Chicago",
@@ -77,8 +77,8 @@ export const DEMO_RIDES: DemoRide[] = [
     amount: 128,
   },
   {
-    id: "tbl-27455",
-    reference: "TBL-27455",
+    id: "ewl-27455",
+    reference: "EWL-27455",
     title: "Wedding Transfer",
     pickup: "Downers Grove, IL",
     destination: "Drake Hotel, Chicago",
@@ -98,7 +98,7 @@ export const CHAUFFEUR = {
   rating: 4.98,
   trips: 1284,
   vehicle: "Luxury Black SUV — Cadillac Escalade",
-  plate: "TBL 214",
+  plate: "EWL 214",
   eta: "12 min",
 };
 
