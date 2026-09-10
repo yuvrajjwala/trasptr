@@ -46,9 +46,9 @@ export const Route = createFileRoute("/onboarding/$step")({
     const slide = SLIDES[(params.step as StepKey) in SLIDES ? (params.step as StepKey) : "1"];
     return {
       meta: [
-        { title: `${slide.title} — Three Black Limousine LLC` },
+        { title: `${slide.title} — East Wind Limo` },
         { name: "description", content: slide.description },
-        { property: "og:title", content: `${slide.title} — Three Black Limousine LLC` },
+        { property: "og:title", content: `${slide.title} — East Wind Limo` },
         { property: "og:description", content: slide.description },
       ],
     };
@@ -87,7 +87,7 @@ function Onboarding() {
 
           <div className="absolute inset-x-0 top-0 flex items-center justify-between px-7 pt-12">
             <span className="eb-eyebrow text-[0.5625rem] text-ivory/70">
-              Three Black
+              East Wind
             </span>
             <Link
               to="/sign-in"

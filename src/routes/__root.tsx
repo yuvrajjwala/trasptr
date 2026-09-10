@@ -77,14 +77,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Three Black Limousine LLC" },
+      { title: "East Wind Limo" },
       {
         name: "description",
         content:
           "Luxury private chauffeur and black SUV service for Chicago and the western suburbs.",
       },
-      { name: "author", content: "Three Black Limousine LLC" },
-      { property: "og:title", content: "Three Black Limousine LLC" },
+      { name: "author", content: "East Wind Limo" },
+      { property: "og:title", content: "East Wind Limo" },
       {
         property: "og:description",
         content:

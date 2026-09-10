@@ -16,13 +16,13 @@ import { AppScreen } from "@/components/eb/app-shell";
 export const Route = createFileRoute("/_authenticated/profile")({
   head: () => ({
     meta: [
-      { title: "Your Profile — Three Black Limousine LLC" },
+      { title: "Your Profile — East Wind Limo" },
       {
         name: "description",
         content:
-          "Manage saved addresses, payment preferences and notification settings for your Three Black Limousine LLC account.",
+          "Manage saved addresses, payment preferences and notification settings for your East Wind Limo account.",
       },
-      { property: "og:title", content: "Your Profile — Three Black Limousine LLC" },
+      { property: "og:title", content: "Your Profile — East Wind Limo" },
       {
         property: "og:description",
         content: "Manage saved addresses, payment and notification preferences.",

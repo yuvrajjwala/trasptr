@@ -7,17 +7,17 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/_authenticated/notifications")({
   head: () => ({
     meta: [
-      { title: "Notifications — Three Black Limousine LLC" },
+      { title: "Notifications — East Wind Limo" },
       {
         name: "description",
         content:
-          "Booking confirmations, chauffeur assignments, flight status updates and ride reminders for your Three Black Limousine LLC transfers.",
+          "Booking confirmations, chauffeur assignments, flight status updates and ride reminders for your East Wind Limo transfers.",
       },
-      { property: "og:title", content: "Notifications — Three Black Limousine LLC" },
+      { property: "og:title", content: "Notifications — East Wind Limo" },
       {
         property: "og:description",
         content:
-          "Booking confirmations, chauffeur assignments and flight updates from Three Black Limousine LLC.",
+          "Booking confirmations, chauffeur assignments and flight updates from East Wind Limo.",
       },
     ],
   }),
@@ -34,7 +34,7 @@ const ITEMS = [
   },
   {
     title: "Chauffeur Assigned",
-    body: "Marcus D. will be your chauffeur. Black Cadillac Escalade · Plate TBL 214.",
+    body: "Marcus D. will be your chauffeur. Black Cadillac Escalade · Plate EWL 214.",
     time: "Today · 7:52 AM",
     Icon: UserRound,
     unread: true,
